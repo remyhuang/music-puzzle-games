@@ -78,9 +78,7 @@ class SEN():
         # Train
         if self.is_train:
             optimizer = tf.train.AdamOptimizer(learning_rate=0.001)
-            update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-            with tf.control_dependencies(update_ops):
-                self.train_op = optimizer.minimize(self.loss)
+            self.train_op = optimizer.minimize(self.loss)
         self.saver = tf.train.Saver(tf.global_variables(), max_to_keep=100)
 
     def calculate(self, sess, batch):
